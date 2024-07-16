@@ -23,6 +23,8 @@ for (let i = 0; i < 3; i++) {
 
 // Quay random hình
 const roll = document.getElementById('roll')
+const setUp = document.getElementById('set-up')
+
 roll.addEventListener('click', () => {
     const messErr = document.getElementById('mess-err')
     if (count < 3) {
@@ -41,6 +43,8 @@ let count = 0
 
 
 const rollRandom = () => {
+    roll.disabled = true
+    setUp.disabled = true
     const interval = setInterval(() => {
         const imageRoll = document.querySelectorAll('.roll-image-item img')
 
@@ -52,6 +56,8 @@ const rollRandom = () => {
     }, 50)
     setTimeout(() => {
         clearInterval(interval)
+        roll.disabled = false
+        setUp.disabled = false
         if (JSON.stringify(choiceArr) === JSON.stringify(choiceCompare)) {
             console.log('Bạn đã đoán đúng với dự đoán:', getResult());
         } else {
@@ -93,7 +99,6 @@ card.forEach((ele, index) => {
 
 
 //setup lại giá trị
-const setUp = document.getElementById('set-up')
 setUp.addEventListener('click', () => {
     reseValue()
     countList.forEach(ele => {
